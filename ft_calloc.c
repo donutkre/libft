@@ -14,10 +14,18 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ret;
+	char			*dst;
+	unsigned int	sum;
+	unsigned int	i;
 
-	if (!(ret = (void *)malloc(count * size)))
-		return (0);
-	ft_bzero(ret, count * size);
-	return (ret);
+	sum = count * size;
+	if (!(dst = malloc(sum)))
+		return (NULL);
+	i = 0;
+	while (sum--)
+	{
+		dst[i] = 0;
+		i++;
+	}
+	return ((void *)dst);
 }

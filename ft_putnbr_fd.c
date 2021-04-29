@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-void	display_nbr(int n, int fd)
+void	print_nbr(int n, int fd)
 {
 	if (n >= 10)
-		display_nbr(n / 10, fd);
+		print_nbr(n / 10, fd);
 	write(fd, &"0123456789"[n % 10], 1);
 }
 
@@ -33,5 +33,5 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, "-", 1);
 		n *= -1;
 	}
-	display_nbr(n, fd);
+	print_nbr(n, fd);
 }

@@ -5,47 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 21:32:34 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 21:32:34 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/29 12:01:58 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/29 12:01:58 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_get_len(int n)
+static int		ft_len(int n)
 {
-	int	len;
+	int	i;
 
-	len = (n <= 0) ? 1 : 0;
+	i = (n <= 0) ? 1 : 0;
 	while (n)
 	{
 		n /= 10;
-		len++;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
 char			*ft_itoa(int n)
 {
-	int			len;
+	int			i;
 	int			sign;
-	char		*ret;
+	char		*a;
 	long long	tmp;
 
 	sign = n < 0 ? -1 : 1;
-	len = ft_get_len(n);
-	if (!(ret = (char *)malloc(sizeof(char) * len + 1)))
+	i = ft_len(n);
+	if (!(a = (char *)malloc(sizeof(char) * i + 1)))
 		return (NULL);
-	ret[len] = 0;
-	len--;
+	a[i] = 0;
+	i--;
 	tmp = n < 0 ? -(long long)n : (long long)n;
-	while (len >= 0)
+	while (i >= 0)
 	{
-		ret[len] = '0' + tmp % 10;
+		a[i] = '0' + tmp % 10;
 		tmp /= 10;
-		len--;
+		i--;
 	}
 	if (sign == -1)
-		ret[0] = '-';
-	return (ret);
+		a[0] = '-';
+	return (a);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 21:33:48 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 21:33:48 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/29 13:44:03 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/29 13:44:03 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
-	char	*ret;
+	char	*arr;
+	size_t	len;
 
 	if (!s1 || !s2)
-		return (0);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	if (!(ret = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1))))
-		return (0);
-	ft_memcpy(ret, s1, len_s1);
-	ft_memcpy(ret + len_s1, s2, len_s2);
-	ret[len_s1 + len_s2] = 0;
-	return (ret);
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!(arr = (char *)malloc(sizeof(char) * len)))
+		return (NULL);
+	arr[0] = 0;
+	ft_strlcat(arr, s1, len);
+	ft_strlcat(arr, s2, len);
+	return (arr);
 }

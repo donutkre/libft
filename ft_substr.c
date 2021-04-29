@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 21:34:02 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 21:34:02 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/29 14:01:22 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/29 14:01:22 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	len_s;
-	char	*ret;
+	size_t		i;
+	size_t		j;
+	char		*a;
 
-	if (!s)
-		return (0);
-	if (!(ret = (char *)malloc(sizeof(char) * len + 1)))
-		return (0);
-	len_s = ft_strlen(s);
 	i = 0;
-	while (i < len && start + i < len_s)
+	j = 0;
+	if (!s)
+		return (NULL);
+	if (!(a = (char*)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	while (s[i])
 	{
-		ret[i] = s[start + i];
+		if (i >= start && j < len)
+		{
+			a[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	ret[i] = 0;
-	return (ret);
+	a[j] = '\0';
+	return (a);
 }

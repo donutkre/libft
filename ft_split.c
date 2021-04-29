@@ -5,33 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 21:32:52 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 21:32:52 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/29 13:40:38 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/29 13:40:38 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**ft_free_malloc_error(char **ret)
+static char		**ft_error(char **r)
 {
 	size_t	i;
 
 	i = 0;
-	while (ret[i])
+	while (r[i])
 	{
-		free(ret[i]);
+		free(r[i]);
 		i++;
 	}
-	free(ret);
+	free(r);
 	return (NULL);
 }
 
-static size_t	ft_get_row(char const *s, char c)
+static size_t	row_count(char const *s, char c)
 {
-	size_t	ret;
+	size_t	r;
 	size_t	i;
 
-	ret = 0;
+	r = 0;
 	i = 0;
 	if (!*s)
 		return (0);
@@ -41,7 +41,7 @@ static size_t	ft_get_row(char const *s, char c)
 	{
 		if (s[i] == c)
 		{
-			ret++;
+			r++;
 			while (s[i] && s[i] == c)
 				i++;
 		}
@@ -49,11 +49,11 @@ static size_t	ft_get_row(char const *s, char c)
 			i++;
 	}
 	if (s[i - 1] != c)
-		ret++;
-	return (ret);
+		r++;
+	return (r);
 }
 
-static size_t	ft_get_strlen(char const *s, char c)
+static size_t	strlen_init(char const *s, char c)
 {
 	size_t	i;
 
@@ -69,29 +69,29 @@ static size_t	ft_get_strlen(char const *s, char c)
 
 char			**ft_split(char const *s, char c)
 {
-	char	**ret;
-	size_t	len;
+	char	**r;
+	size_t	l;
 	size_t	row;
 	size_t	i;
 
 	if (!s)
 		return (NULL);
-	row = ft_get_row(s, c);
-	if (!(ret = (char **)malloc(sizeof(char *) * (row + 1))))
+	row = row_count(s, c);
+	if (!(r = (char **)malloc(sizeof(char *) * (row + 1))))
 		return (NULL);
 	i = 0;
 	while (i < row)
 	{
 		while (*s && *s == c)
 			s++;
-		len = ft_get_strlen(s, c);
-		if (!(ret[i] = (char *)malloc(sizeof(char) * len + 1)))
-			return (ft_free_malloc_error(ret));
-		ft_strlcpy(ret[i], s, len + 1);
+		l = strlen_init(s, c);
+		if (!(r[i] = (char *)malloc(sizeof(char) * l + 1)))
+			return (ft_error(r));
+		ft_strlcpy(r[i], s, l + 1);
 		i++;
 		if (i < row)
-			s += len;
+			s += l;
 	}
-	ret[i] = (NULL);
-	return (ret);
+	r[i] = (NULL);
+	return (r);
 }

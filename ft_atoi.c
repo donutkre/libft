@@ -17,10 +17,10 @@
 
 int		ft_atoi(char *str)
 {
-	int x;
+	int i;
 	int n;
 
-	x = 0;
+	i = 0;
 	n = 1;
 	while (*str == ' ' || *str == '\n' || *str == '\r'
 			|| *str == '\v' || *str == '\t' || *str == '\f')
@@ -37,8 +37,8 @@ int		ft_atoi(char *str)
 	}
 	while (*str >= 48 && *str <= 57)
 	{
-		x = x * 10 + (*str - 48);
+		i = i * 10 + (*str - 48);
 		++str;
 	}
-	return (x * n);
+	return (i * n);
 }
