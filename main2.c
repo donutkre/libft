@@ -20,12 +20,24 @@ void green(){
 void reset () {
   printf("\033[0m");
 }
-char upper(unsigned int i, char c)
+static char	upper(unsigned int i, char c)
 {
-	if (c >= 'a' && c <= 'z');
-		c-=('a' - 'A');
-	return(c);
+	i++;
+	i--;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }
+
+static char	lower(unsigned int i, char c)
+{
+	i++;
+	i--;
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}
+
 int main(void)
 {
     yellow();
@@ -52,10 +64,12 @@ int main(void)
     	i++;
     }
     printf("=================================\nft_itoa\n=================================\n");
-    char *str2 = ft_itoa(123);
-	printf("%s\n", str2);
+    int nbr = 42;
+	printf("%s\n", ft_itoa(nbr));
     printf("=================================\nft_strmapi\n=================================\n");
     char *str3 = ft_strmapi("HeLlo wOrLd!!", upper);
+    char *str4 = ft_strmapi("HeLlo wOrLd!!", lower);
 	printf("%s\n", str3);
+	printf("%s\n", str4);
 
 }

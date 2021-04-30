@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "string.h"
 #include <stdio.h>
 #include <ctype.h>
 void red () {
@@ -20,13 +21,22 @@ void green(){
 void reset () {
   printf("\033[0m");
 }
+void	ft_putbyte(char *pref, void *s, size_t n)
+{
+	write(1, pref, ft_strlen(pref));
+	if (s == NULL)
+		write(1, "(null)", 6);
+	else
+		write(1, s, n);
+	write(1, "|\n", 2);
+}
 int main(void)
 {
     yellow();
     printf("=================================\nft_isalnum\n=================================\n");
     printf("a : %d\n", ft_isalnum('a'));
     printf("3 : %d\n", ft_isalnum('3'));
-    printf(", : %d\n", ft_isalnum(','));
+    printf(", : %d\n", ft_isalnum('&'));
     printf("=================================\nft_isdigit\n=================================\n");
     printf("a : %d\n", ft_isdigit('a'));
     printf("A : %d\n", ft_isdigit('A'));
@@ -37,7 +47,7 @@ int main(void)
     printf("0 : %d\n", ft_isalpha('0'));
     printf("=================================\nft_isascii\n=================================\n");
     printf("a : %d\n", ft_isascii('a'));
-    printf("9 : %d\n", ft_isascii('9'));
+    printf("9 : %d\n", ft_isascii('128'));
     printf("Ã : %d\n", ft_isascii('Ã'));
     printf("=================================\nft_isprint\n=================================\n");
     printf("%d\n", ft_isprint('a'));
@@ -46,7 +56,7 @@ int main(void)
     printf("=================================\nft_toupper\n=================================\n");
     printf("%c\n", ft_toupper('a'));
     printf("%c\n", ft_toupper('h'));
-    printf("%c\n", ft_toupper('0'));
+    printf("%c\n", ft_toupper('&'));
     printf("=================================\nft_tolower\n=================================\n");
     printf("%c\n", ft_tolower('g'));
     printf("%c\n", ft_tolower('A'));
@@ -75,7 +85,7 @@ int main(void)
 	str8 = "\r -123";
 	str9 = "\t\n\v\f\r\t -+-+123abc";
 	str10 = "-123";
-	str11 = " 123";
+	str11 = "-24+42";
 	printf("Output : %d\n", ft_atoi(str));
 	printf("Output : %d\n", ft_atoi(str1));
 	printf("Output : %d\n", ft_atoi(str2));
@@ -117,17 +127,17 @@ int main(void)
 	char* strt = "pineapple pizza";
 	printf("%s\n", ft_strchr(strt, 'p'));
     printf("=================================\nft_strlcat\n=================================\n");
-    char dest0[10] = "\0";
-    char dest[10] = "000";
-    char src[10] = "123456789";
-    printf("When dest size is 0: dest = %s return value = %d\n", dest0, ft_strlcat(dest0, src, 5));
-    printf("When dest size is equal to size: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 3));
-    printf("When dest size is one less than size: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 4));
-    printf("When dest size is less than size: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 6));
-    printf("When dest size is greater than size: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 2));
-    printf("When size is greater than dest size and src is empty: dest = %s return value = %d\n", dest, ft_strlcat(dest, "", 7));
-    printf("When size is 0: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 0));
-    printf("When size is 234567: dest = %s return value = %d\n", dest, ft_strlcat(dest, src, 234567)); 
+	char	*str88;
+	char	*dest5;
+	int		r;
+
+	dest5 = malloc(30);
+	dest5 = strcpy(dest5, "coucou");
+	str88 = strdup(" ca va les amis ?");
+	printf("\nstr1 : |%s|\nstr2 : |%s|\n", dest5, str88);
+	r = ft_strlcat(dest5, str88, ft_strlen(str88) + ft_strlen(dest5) + 1);
+	printf("\ndest : |%s|\nr : |%i|\n", dest5, r);
+
     printf("=================================\nft_strdup\n=================================\n");   
 	printf("%s\n", ft_strdup("Hello world!"));
     printf("=================================\nft_strlen\n=================================\n");   
@@ -145,8 +155,8 @@ int main(void)
     printf("%d\n", ft_memcmp("42KL", "42KL123", 3));
 	printf("%d\n", ft_memcmp("42KL", "42KL123", 4));
     printf("=================================\nft_memchr\n=================================\n"); 
-    char  str12[] = "Identity";
-	printf("%s\n", ft_memchr(str12, 'd', 4));
+    char  str12[] = "Identity is true";
+	printf("%s\n", ft_memchr(str12, 'd', 8));
 	printf("%s\n", ft_memchr(str12, 'd', 2));  
     printf("=================================\nft_memmove\n=================================\n");   
 	char str13[] = "abcdefgh";
@@ -154,12 +164,26 @@ int main(void)
 	ft_memmove(str13+2, str13+1, 3);
 	printf("memmove after : %s\n", str13);
     printf("=================================\nft_memcpy\n=================================\n");   
-    char str99[] = "memcpy test!";
-	char str1111[30];
-	char str22[30];
-	ft_memcpy(str1111, str99, strlen(str99)+1);
-	ft_memcpy(str22, "copy", 5);
-	printf("str: %s\nstr1 : %s\nstr2: %s\n",str99,str1111,str22);
+	char	*src1111;
+	char	*src2222;
+	char	*dest1;
+	char	*dest2;
+	size_t	n;
+	size_t	len;
+
+	dest1 = (char *)malloc(30);
+	dest2 = (char *)malloc(30);
+	src1111 = strdup("Hello World!");
+	src2222 = strdup("Hello World!");
+	n = 4;
+	len = strlen(src1111);
+	printf("n : %zu, src : |%s|\n", n, src1111);
+	dest1 = memcpy(dest1, src1111, n);
+	dest2 = ft_memcpy(dest2, src2222, n);
+	ft_putbyte("   memcpy : |", dest1, len);
+	ft_putbyte("ft_memcpy : |", dest2, len);
+	free(src1111);
+	free(src2222);
     printf("=================================\nft_memset\n=================================\n"); 
 	char str77[100] = "Hello World!";
 	printf("%s\n", str77);
@@ -172,19 +196,30 @@ int main(void)
     ft_memccpy( buffer, msg, 'ng', 80 );
     printf( "%s\n", buffer ); 
     printf("=================================\nft_calloc\n=================================\n"); 
-    int i, * ptr8, sum = 0;
-    ptr8 = ft_calloc(10, sizeof(int));
-    if (ptr8 == NULL) {
-        printf("Error! memory not allocated.");
-        exit(0);
-    }
-    printf("Building and calculating the sequence sum of the first 10 terms \n ");
-    for (i = 0; i < 10; ++i) { * (ptr8 + i) = i;
-        sum += * (ptr8 + i);
-    }
-    printf("Sum = %d\n", sum);
-    free(ptr8);
-    return 0;    
-    printf("=================================\nft_bzero\n=================================\n");
+    char	*str111;
+	char	*str222;
+	str222 = (char *)ft_calloc(sizeof(char), 10);
+	strcpy(str111, "coucou");
+	strcpy(str222, "ccc");
+	printf("%s\n", str111, str222);
+    return (1);
     
+    printf("=================================\nft_bzero\n=================================\n");
+//     int segfault;
+// struct sigaction sig;
+// char const segstr[] = "(segfault)";
+
+
+
+// void	test_bzero(char const *test_name, int can_segfault,
+// 		char *dest_libft,
+// 		char *dest_libc,
+// 		size_t length)
+// {
+// 	segfault = setjmp(restore); if (!segfault) ft_bzero(dest_libft, length); else dest_libft = segstr;
+// 	segfault = setjmp(restore); if (!segfault)    bzero(dest_libc,  length); else dest_libc  = segstr;
+// 	test_str(test_name, "bzero",                    dest_libft,          dest_libc,          can_segfault);
+// 	test_str(NULL,      "bzero (after the '\\0's)", dest_libft + length, dest_libc + length, can_segfault);
+// }
+
 }
