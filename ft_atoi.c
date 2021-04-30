@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/26 22:04:40 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/26 22:04:40 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/30 17:12:08 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/30 17:12:08 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-static int	ft_isspace(int c)
+static int	isspace(int c)
 {
 	if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v'
 		|| c == ' ')
@@ -28,30 +28,30 @@ static int	value(int n)
 	return (-1);
 }
 
-int	ft_atoi(const char *nbr)
+int			ft_atoi(const char *nbr)
 {
+	int		sign;
 	int		i;
-	int		n;
-	long	nb;
-	long	limit;
+	long	num;
+	long	max;
 
 	i = 0;
-	nb = 0;
-	n = 1;
-	while (ft_isspace(nbr[i]) == 1)
+	num = 0;
+	sign = 1;
+	while (isspace(nbr[i]) == 1)
 		i++;
 	if (nbr[i] == '+' || nbr[i] == '-')
 		if (nbr[i++] == '-')
-			n = -1;
-	limit = LONG_MAX / 10;
+			sign = -1;
+	max = LONG_MAX / 10;
 	while (ft_isdigit(nbr[i]) == 1)
 	{
-		if (nb > limit)
-			return (value(n));
-		nb = (nb * 10) + (nbr[i] - '0');
-		if (nb < 0)
-			return (value(n));
+		if (num > max)
+			return (value(sign));
+		num = (num * 10) + (nbr[i] - '0');
+		if (num < 0)
+			return (value(sign));
 		i++;
 	}
-	return ((int)(nb * n));
+	return ((int)(num * sign));
 }

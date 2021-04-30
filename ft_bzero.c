@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 20:50:20 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 20:50:20 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/30 17:44:07 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/30 17:44:07 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void				ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
-	size_t				i;
+	size_t			i;
 
 	ptr = (unsigned char *)s;
 	i = 0;

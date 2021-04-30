@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 21:31:31 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/24 21:31:31 by ktiong           ###   ########.fr       */
+/*   Created: 2021/04/30 18:46:47 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/30 18:46:47 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,9 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	if (fd < 0 || !s)
 		return ;
-	write(fd, s, ft_strlen(s));
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
 }
