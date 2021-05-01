@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/25 14:12:11 by ktiong            #+#    #+#              #
-#    Updated: 2021/04/25 14:12:11 by ktiong           ###   ########.fr        #
+#    Created: 2021/05/01 11:45:45 by ktiong            #+#    #+#              #
+#    Updated: 2021/05/01 11:45:45 by ktiong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,13 @@ SRCS_2	=       ft_substr.c		\
 		  ft_putstr_fd.c	\
 		  ft_putendl_fd.c	\
 		  ft_putnbr_fd.c	\
+		  ft_htoi.c			\
+		  ft_ishex.c		\
+		  ft_ispunc.c		\
+		  ft_isspace.c		\
+		  ft_isxdigit.c		\
+		  ft_memdel.c		\
+		  ft_round.c		\
 
 SRCS_BN =       ft_lstnew.c		\
 		  ft_lstsize.c		\
