@@ -13,14 +13,6 @@
 #include "libft.h"
 #include <limits.h>
 
-static int	isspace(int c)
-{
-	if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v'
-		|| c == ' ')
-		return (1);
-	return (0);
-}
-
 static int	value(int n)
 {
 	if (n == -1)
@@ -38,7 +30,7 @@ int			ft_atoi(const char *nbr)
 	i = 0;
 	num = 0;
 	sign = 1;
-	while (isspace(nbr[i]) == 1)
+	while (ft_isspace(nbr[i]) == 1)
 		i++;
 	if (nbr[i] == '+' || nbr[i] == '-')
 		if (nbr[i++] == '-')

@@ -2,6 +2,7 @@
 #include "string.h"
 #include <stdio.h>
 #include <ctype.h>
+
 void red () {
   printf("\033[1;31m");
 }
@@ -21,15 +22,18 @@ void green(){
 void reset () {
   printf("\033[0m");
 }
-void	ft_putbyte(char *pref, void *s, size_t n)
+void	ft_putbyte(char *p, void *s, size_t n)
 {
-	write(1, pref, ft_strlen(pref));
+	write(1, p, ft_strlen(p));
 	if (s == NULL)
 		write(1, "(null)", 6);
 	else
 		write(1, s, n);
 	write(1, "|\n", 2);
 }
+
+
+
 int main(void)
 {
      printf("=================================\nft_memcmp\n=================================\n");   
@@ -79,25 +83,26 @@ int main(void)
     printf("=================================\nft_calloc\n=================================\n"); 
     char	*str111;
 	char	*str222;
+    str111 = (char *)calloc(sizeof(char), 10);
 	str222 = (char *)ft_calloc(sizeof(char), 10);
-	strcpy(str111, "coucou");
-	strcpy(str222, "ccc");
+	strcpy(str111, "testing");
+	strcpy(str222, "testing");
 	printf("%s\n", str111, str222);
-    return (1);
+
 
     printf("=================================\nft_bzero\n=================================\n"); 
-    int segfault;
-    struct sigaction sig;
-    char const segstr[] = "(segfault)";
+    char	str[24] = "This is a sample string";
+	size_t	i = 0;
+
+	printf("%s\n", str);
+	ft_bzero(str, 10);
+	printf("%s\n", str);
+	while (i < sizeof(str))
+	{
+		printf("%c ", str[i]);
+		i++;
+	}
+	printf("\n");
+	return (0);
     
-    void	test_bzero(char const *test_name, int can_segfault,
-		char *dest_libft,
-		char *dest_libc,
-		size_t length)
-    {
-        segfault = setjmp(restore); if (!segfault) ft_bzero(dest_libft, length); else dest_libft = segstr;
-        segfault = setjmp(restore); if (!segfault)    bzero(dest_libc,  length); else dest_libc  = segstr;
-        test_str(test_name, "bzero",                    dest_libft,          dest_libc,          can_segfault);
-        test_str(NULL,      "bzero (after the '\\0's)", dest_libft + length, dest_libc + length, can_segfault);
-    }
 }
