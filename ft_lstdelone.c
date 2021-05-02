@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 21:11:20 by ktiong            #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:20 by ktiong           ###   ########.fr       */
+/*   Created: 2021/05/01 22:26:33 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/01 22:26:33 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 		return ;
 	del(lst->content);
 	free(lst);
+	lst = NULL;
 }

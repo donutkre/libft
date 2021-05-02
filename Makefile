@@ -64,7 +64,7 @@ SRCS_2	=       ft_substr.c		\
 		  ft_isspace.c		\
 		  ft_isxdigit.c		\
 		  ft_memdel.c		\
-		  ft_round.c		\
+
 
 SRCS_BN =       ft_lstnew.c		\
 		  ft_lstsize.c		\
