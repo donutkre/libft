@@ -6,51 +6,35 @@
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 18:58:12 by ktiong            #+#    #+#             */
-/*   Updated: 2021/05/02 21:41:39 by ktiong           ###   ########.fr       */
+/*   Updated: 2021/05/05 20:58:49 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_check(char c, char const *s)
-{
-	int		i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	int		len;
-	int		src;
-	int		dst;
-	int		i;
+	size_t	i;
+	char	*start;
+	char	*end;
+	char	*new_s;
 
-	src = 0;
-	if (!s1)
-		return (0);
-	len = ft_strlen((char *)s1);
-	while (s1[src] && ft_check(s1[src], set))
-		src++;
-	dst = len - 1;
-	while (dst >= src && s1[dst] && len > 0 && ft_check(s1[dst], set))
-		dst--;
-	str = malloc(dst - src + 2);
-	if (!str)
-		return (0);
-	i = src - 1;
-	while (++i <= dst)
-		str[i - src] = s1[i];
-	str[dst - src + 1] = '\0';
-	return (str);
+	if (!s1 || !set)
+		return (NULL);
+	start = (char *)s1;
+	while (*start && ft_strchr(set, *start))
+		start++;
+	end = (char *)(s1 + ft_strlen(s1) - 1);
+	while (end >= start && ft_strchr(set, *end))
+		end--;
+	new_s = ft_calloc(end - start + 2, sizeof(char));
+	if (!new_s)
+		return (NULL);
+	i = 0;
+	while (start + i <= end)
+	{
+		*(new_s + i) = *(start + i);
+		i++;
+	}
+	return (new_s);
 }

@@ -46,14 +46,7 @@ SRCS					= ft_atoi.c \
 					  ft_substr.c \
 					  ft_tolower.c \
 					  ft_toupper.c \
-					  ft_itoa.c \
-					  ft_htoi.c \
-					  ft_ishex.c \
-	   				  ft_ispunc.c \
-					  ft_isspace.c \
-					  ft_isxdigit.c \
-					  ft_memdel.c \
-					  ft_putnbr.c 
+					  ft_itoa.c 
 
 BNS_SRCS				= ft_lstsize.c \
 					  ft_lstadd_back.c \
@@ -63,7 +56,14 @@ BNS_SRCS				= ft_lstsize.c \
 					  ft_lstiter.c \
 					  ft_lstlast.c \
 					  ft_lstmap.c \
-					  ft_lstnew.c
+					  ft_lstnew.c \
+					  ft_htoi_bonus.c \
+					  ft_ishex_bonus.c \
+	   				  ft_ispunc_bonus.c \
+					  ft_isspace_bonus.c \
+					  ft_isxdigit_bonus.c \
+					  ft_memdel_bonus.c \
+					  ft_putnbr_bonus.c 
 
 OBJS					= $(SRCS:%.c=%.o)
 

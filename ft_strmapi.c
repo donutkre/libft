@@ -6,7 +6,7 @@
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:13:04 by ktiong            #+#    #+#             */
-/*   Updated: 2021/05/02 19:40:16 by ktiong           ###   ########.fr       */
+/*   Updated: 2021/05/05 21:29:24 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	int		len;
+	size_t	i;
 	char	*arr;
 
-	i = 0;
-	if (!s)
-		return (0);
-	len = ft_strlen((char *)s);
-	arr = malloc(sizeof(char) * (len + 1));
+	if (!s || !f)
+		return (NULL);
+	arr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (!arr)
-		return (0);
-	while (i < len)
+		return (NULL);
+	i = 0;
+	while (*(s + i))
 	{
-		arr[i] = f(i, s[i]);
+		*(arr + i) = f(i, *(s + i));
 		i++;
 	}
-	arr[len] = '\0';
 	return (arr);
 }
