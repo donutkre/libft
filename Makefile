@@ -62,8 +62,7 @@ BNS_SRCS				= ft_lstsize.c \
 	   				  ft_ispunc_bonus.c \
 					  ft_isspace_bonus.c \
 					  ft_isxdigit_bonus.c \
-					  ft_memdel_bonus.c \
-					  ft_putnbr_bonus.c 
+					  ft_memdel_bonus.c  
 
 OBJS					= $(SRCS:%.c=%.o)
 

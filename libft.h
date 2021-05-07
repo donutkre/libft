@@ -80,6 +80,5 @@ int					ft_ispunc_bonus(int c);
 int					ft_isxdigit_bonus(int c);
 int					ft_isspace_bonus(int c);
 void				ft_memdel_bonus(void **ap);
-char				*ft_putnbr_bonus(long int n, char *s, int size);
 
 #endif
