@@ -46,7 +46,13 @@ SRCS					= ft_atoi.c \
 					  ft_substr.c \
 					  ft_tolower.c \
 					  ft_toupper.c \
-					  ft_itoa.c 
+					  ft_itoa.c \
+					  ft_strnew.c \
+					  ft_chrstr.c \
+					  ft_putchar.c \
+					  ft_strcpy.c \
+					  ft_putstr.c \
+					  ft_strncpy.c 
 
 BNS_SRCS				= ft_lstsize.c \
 					  ft_lstadd_back.c \

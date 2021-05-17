@@ -37,6 +37,11 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_chrstr(unsigned char c, const char *s);
+void				ft_putchar(char c);
+char				*ft_strcpy(char *dst, const char *src);
+void				ft_putstr(char const *s);
+char				*ft_strncpy(char *dst, const char *src, size_t n);
 int					ft_atoi(const char *nbr);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -47,6 +52,7 @@ char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				*ft_strdup(const char *s1);
 char				*ft_itoa(int n);
+char				*ft_strnew(size_t size);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
