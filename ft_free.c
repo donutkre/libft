@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnstr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 01:58:58 by ktiong            #+#    #+#             */
-/*   Updated: 2021/05/19 01:58:58 by ktiong           ###   ########.fr       */
+/*   Created: 2021/05/20 01:57:03 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/20 01:57:03 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnstr_fd(char *s, size_t max_len, int fd)
+void	ft_free(void **pt)
 {
-	size_t	s_len;
-
-	if (s)
-	{
-		s_len = ft_strlen(s);
-		if (s_len > max_len)
-			write(fd, s, max_len);
-		else
-			write(fd, s, s_len);
-	}
-}
-
-void	ft_putfstr_fd(char *s, size_t len, int fd)
-{
-	if (s)
-		write(fd, s, len);
+	if (pt && *pt)
+		free(*pt);
+	*pt = NULL;
 }

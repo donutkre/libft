@@ -45,7 +45,8 @@ char				*ft_strncpy(char *dst, const char *src, size_t n);
 int					ft_atoi(const char *nbr);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
-
+void				ft_free(void **pt);
+void				ft_putfstr_fd(char *s, size_t len, int fd);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *big, const char *little,
