@@ -80,11 +80,17 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
-int					ft_htoi_bonus(char *s);
-int					ft_ishex_bonus(int c);
-int					ft_ispunc_bonus(int c);
-int					ft_isxdigit_bonus(int c);
-int					ft_isspace_bonus(int c);
-void				ft_memdel_bonus(void **ap);
-
+int					ft_htoi(char *s);
+int					ft_ishex(int c);
+int					ft_ispunc(int c);
+int					ft_isxdigit(int c);
+int					ft_isspace(int c);
+void				ft_memdel(void **ap);
+char				*ft_isnan(char c);
+int					ft_abs(int nbr);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
+int					ft_zerolen(char *str);
+void				ft_putnstr_fd(char *s, size_t max_len, int fd);
+long				ft_ternint(int condition, long val1, long val2);
 #endif
