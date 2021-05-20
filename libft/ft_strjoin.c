@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:18:43 by syamashi          #+#    #+#             */
-/*   Updated: 2020/06/26 17:00:23 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/29 13:44:03 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/05 21:19:46 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*src;
-	unsigned int	i;
-	unsigned int	j;
+	size_t	i;
+	size_t	j;
+	char	*arr;
 
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	if (!(src = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	if (!s1 || !s2)
+		return (0);
+	arr = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (!arr)
 		return (NULL);
 	i = 0;
-	while (*s1)
-		src[i++] = *s1++;
+	while (*(s1 + i))
+	{
+		*(arr + i) = *(s1 + i);
+		i++;
+	}
 	j = 0;
-	while (*s2)
-		src[i + j++] = *s2++;
-	src[i + j] = '\0';
-	return (src);
+	while (*(s2 + j))
+	{
+		*(arr + i + j) = *(s2 + j);
+		j++;
+	}
+	return (arr);
 }

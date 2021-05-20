@@ -15,7 +15,7 @@
 int	make_save2(va_list *list, t_print p, char *save)
 {
 	if (ft_isnum(p.spec) && !is_deci(p.spec)
-			&& p.pcs == 0 && !ft_strncmp(save, "0\0", 2))
+		&& p.pcs == 0 && !ft_strncmp(save, "0\0", 2))
 		*save = '\0';
 	if (p.sharp)
 		save = ft_sharp(save, &p);
@@ -35,7 +35,7 @@ int	make_save2(va_list *list, t_print p, char *save)
 	else if (p.spec == 'c' || p.spec == '%')
 		p.show = 1;
 	else
-		p.show = (p.pcs < 0) ? p.width : MIN(p.width, p.pcs);
+		p.show = ft_tern((p.pcs < 0), p.width, MIN(p.width, p.pcs));
 	p.field = MAX(p.field, p.show);
 	pout(save, p);
 	return (p.field);
@@ -48,7 +48,7 @@ int	make_save1(va_list *list, t_print p, size_t len)
 	if (p.spec == 'c')
 		save = ft_convert_c(list, p);
 	else if (p.spec == 's')
-		save = ft_strdup(va_arg(*list, char*));
+		save = ft_strdup(va_arg(*list, char *));
 	else if (p.spec == 'd' || p.spec == 'i')
 		save = ft_convert_di(list, &p);
 	else if (is_deci(p.spec))
@@ -91,7 +91,7 @@ int	parse(const char **s, va_list *list, size_t len)
 
 int	ft_printf(const char *s, ...)
 {
-	va_list list;
+	va_list	list;
 	size_t	len;
 
 	len = 0;

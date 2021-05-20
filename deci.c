@@ -19,14 +19,14 @@ void	make_fans(double d, t_print *p)
 	int					exp;
 
 	manti = 0;
-	val = *(unsigned long long*)&d;
+	val = *(unsigned long long *) &d;
 	if (d)
 		manti = (val & ((1ULL << 52) - 1)) + (1ULL << 52);
 	val >>= 52;
 	exp = val & ((1 << 11) - 1);
 	exp -= 1023;
 	val >>= 11;
-	p->minus = val ? -1 : 0;
+	p->minus = ft_tern(val, -1, 0);
 	if (exp == 1024)
 		ft_nanflag(manti, p);
 	make_ians(manti, exp, p);
@@ -44,7 +44,8 @@ char	*make_fpre(t_print *p)
 	i = 800;
 	while (!p->ians[i] && i)
 		i--;
-	if (!(pre = malloc(sizeof(char) * (i + 2))))
+	pre = (char *)malloc(sizeof(char) * (i + 2));
+	if (!pre)
 		return (NULL);
 	j = i + 1;
 	while (--j >= 0)

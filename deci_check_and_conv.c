@@ -20,7 +20,7 @@ void	convert_deci2(t_print *p)
 	i = -1;
 	while (2101 + i > 0 && !p->dans[2101 + i])
 		i--;
-	p->exp = (i == -2101) ? 0 : i;
+	p->exp = ft_tern((i == -2101), 0, i);
 	p->ians[0] = p->dans[2101 + i];
 	j = 0;
 	while (2101 + i + --j >= 0)
@@ -29,9 +29,9 @@ void	convert_deci2(t_print *p)
 
 void	convert_deci(t_print *p)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 800;
 	while (!p->ians[i] && i)
@@ -57,7 +57,7 @@ void	convert_deci(t_print *p)
 
 void	ft_echeck(t_print *p)
 {
-	int j;
+	int	j;
 
 	if (p->ians[1])
 	{
@@ -81,7 +81,7 @@ void	check_deci2(t_print *p)
 	i = -1;
 	while (2101 + i > 0 && !p->dans[2101 + i])
 		i--;
-	p->exp = (i == -2101) ? 0 : i;
+	p->exp = ft_tern((i == -2101), 0, i);
 	if (p->exp)
 	{
 		i = -1;
@@ -94,8 +94,8 @@ void	check_deci2(t_print *p)
 
 void	check_deci(t_print *p)
 {
-	int i;
-	int tmp;
+	int	i;
+	int	tmp;
 
 	tmp = p->pcs;
 	i = 800;
@@ -103,10 +103,11 @@ void	check_deci(t_print *p)
 		i--;
 	if (i > 0)
 		p->exp = i;
-	p->sdig = (i > 0 || (i == 0 && p->ians[0])) ? i + 1 : 0;
-	p->pcs = (i > 0 || (i == 0 && p->ians[0])) ? p->pcs - p->sdig : p->pcs;
+	p->sdig = ft_tern((i > 0 || (i == 0 && p->ians[0])), i + 1, 0);
+	p->pcs = ft_tern((i > 0 || (i == 0 && p->ians[0])),
+			p->pcs - p->sdig, p->pcs);
 	if (i == 0 && p->ians[0] == 0)
 		check_deci2(p);
-	p->spec = (p->exp < -4 || p->pcs < 0) ? 'e' : 'f';
-	p->pcs = (p->spec == 'e') ? tmp - 1 : p->pcs;
+	p->spec = ft_tern((p->exp < -4 || p->pcs < 0), 'e', 'f');
+	p->pcs = ft_tern((p->spec == 'e'), tmp - 1, p->pcs);
 }

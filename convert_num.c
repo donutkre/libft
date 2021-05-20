@@ -24,7 +24,7 @@ char	*ft_convert_c(va_list *list, t_print p)
 	return (save);
 }
 
-int		ft_convert_n(va_list *list, size_t len, t_print p)
+int	ft_convert_n(va_list *list, size_t len, t_print p)
 {
 	signed char		*tmphh;
 	short int		*tmph;
@@ -33,19 +33,19 @@ int		ft_convert_n(va_list *list, size_t len, t_print p)
 	int				*tmp;
 
 	if (p.hhll == 'H')
-		if (!!(tmphh = va_arg(*list, signed char*)))
+		if (!!(tmphh = va_arg(*list, signed char *)))
 			*tmphh = len;
 	if (p.hhll == 'h')
-		if (!!(tmph = va_arg(*list, short int*)))
+		if (!!(tmph = va_arg(*list, short int *)))
 			*tmph = len;
 	if (p.hhll == 'l')
-		if (!!(tmpl = va_arg(*list, long int*)))
+		if (!!(tmpl = va_arg(*list, long int *)))
 			*tmpl = len;
 	if (p.hhll == 'L')
-		if (!!(tmpll = va_arg(*list, long long int*)))
+		if (!!(tmpll = va_arg(*list, long long int *)))
 			*tmpll = len;
 	if (p.hhll == 0)
-		if (!!(tmp = va_arg(*list, int*)))
+		if (!!(tmp = va_arg(*list, int *)))
 			*tmp = len;
 	return (0);
 }

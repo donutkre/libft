@@ -3,38 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 22:15:35 by syamashi          #+#    #+#             */
-/*   Updated: 2020/06/28 19:39:50 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/30 17:12:08 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/30 17:12:08 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-int	ft_atoi(const char *nptr)
+static int	value(int n)
 {
-	char		*str;
-	int			n;
-	int			num;
-	long long	m;
+	if (n == -1)
+		return (0);
+	return (-1);
+}
 
-	str = (char *)nptr;
-	while (*str == ' ' || *str == '\t' ||
-	*str == '\n' || *str == '\v' || *str == '\f' || *str == '\r')
-		str++;
-	n = (*str == '-') ? -1 : 1;
-	if (*str == '+' || *str == '-')
-		str++;
-	m = 0;
-	while (ft_isdigit(*str))
+int	ft_atoi(const char *nbr)
+{
+	int		sign;
+	int		i;
+	long	num;
+	long	max;
+
+	i = 0;
+	num = 0;
+	sign = 1;
+	while (ft_isspace(nbr[i]) == 1)
+		i++;
+	if (nbr[i] == '+' || nbr[i] == '-')
+		if (nbr[i++] == '-')
+			sign = -1;
+	max = LONG_MAX / 10;
+	while (ft_isdigit(nbr[i]) == 1)
 	{
-		num = (*str++ - '0');
-		if ((m >= 922337203685477580 && num > 7) || m >= 922337203685477581)
-			return (-1);
-		if ((m <= -922337203685477580 && num > 8) || m <= -922337203685477581)
-			return (0);
-		m = m * 10 + n * num;
+		if (num > max)
+			return (value(sign));
+		num = (num * 10) + (nbr[i] - '0');
+		if (num < 0)
+			return (value(sign));
+		i++;
 	}
-	return (m);
+	return ((int)(num * sign));
 }

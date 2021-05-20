@@ -23,7 +23,8 @@ char	*ft_itoa_st(size_t n)
 	m = n;
 	while (m /= 10)
 		len++;
-	if (!(str = (char*)malloc(len + 1)))
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
 	str[len] = '\0';
 	str[--len] = n % 10 + '0';
@@ -63,7 +64,8 @@ char	*ft_convert(size_t n, const char *set, int base)
 	len = 1;
 	while (m /= base)
 		len++;
-	if (!(src = malloc(sizeof(char) * (len + 1))))
+	src = (char *)malloc(sizeof(char) * (len + 1));
+	if (!src)
 		return (NULL);
 	src[len] = '\0';
 	src[--len] = set[n % base];

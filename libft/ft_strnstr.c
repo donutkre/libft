@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:18:57 by syamashi          #+#    #+#             */
-/*   Updated: 2020/06/26 19:57:32 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/26 22:49:48 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/26 22:49:48 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*strb;
-	char	*strl;
-	int		n;
-	size_t	m;
+	size_t	i;
+	size_t	j;
 
-	strb = (char *)big;
+	i = 0;
 	if (*little == '\0')
-		return (strb);
-	strl = (char *)little;
-	n = len - ft_strlen(little) + 1;
-	m = ft_strlen(little);
-	while (1)
+		return ((char *)big);
+	while (big[i] != '\0' && i < len)
 	{
-		if (*strb == '\0' || n-- <= 0)
-			return (NULL);
-		if (ft_strncmp(strb++, strl, m) == 0)
-			return (strb - 1);
+		j = 0;
+		while (big[i + j] == little[j] && i + j < len)
+		{
+			j++;
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
+		}
+		i++;
 	}
+	return (0);
 }

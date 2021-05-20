@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:19:11 by syamashi          #+#    #+#             */
-/*   Updated: 2020/06/26 17:02:29 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/30 18:58:12 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/05 20:58:49 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		start;
-	int		used[301];
-	int		i;
-	int		j;
+	size_t	i;
+	char	*start;
+	char	*end;
+	char	*new_s;
 
-	if (!s1)
-		return (0);
-	if (!set)
-		return (ft_strdup(s1));
+	if (!s1 || !set)
+		return (NULL);
+	start = (char *)s1;
+	while (*start && ft_strchr(set, *start))
+		start++;
+	end = (char *)(s1 + ft_strlen(s1) - 1);
+	while (end >= start && ft_strchr(set, *end))
+		end--;
+	new_s = ft_calloc(end - start + 2, sizeof(char));
+	if (!new_s)
+		return (NULL);
 	i = 0;
-	while (i < 300)
-		used[i++] = 0;
-	while (*set)
-		used[(unsigned char)*set++] = 1;
-	start = -1;
-	while (s1[++start])
-		if (!used[(unsigned char)s1[start]])
-			break ;
-	j = ft_strlen(s1);
-	while (--j > start)
-		if (!used[(unsigned char)s1[j]])
-			break ;
-	j = j - start + 1;
-	return (ft_substr(s1, start, j));
+	while (start + i <= end)
+	{
+		*(new_s + i) = *(start + i);
+		i++;
+	}
+	return (new_s);
 }

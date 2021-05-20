@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:19:14 by syamashi          #+#    #+#             */
-/*   Updated: 2020/06/25 16:40:08 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/29 14:01:22 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/04 15:31:25 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*str;
+	char			*arr;
 	unsigned int	i;
+	size_t			s1;
+	size_t			s2;
 
 	if (!s)
 		return (NULL);
-	if (len == 0 || start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (!(str = (char *)malloc(len + 1)))
+	s1 = ft_strlen(s);
+	if (start > s1)
+		return ((char *)ft_calloc(sizeof(*arr), 1));
+	if (s1 > len)
+		s2 = len;
+	else
+		s2 = s1 - start;
+	arr = (char *)ft_calloc(sizeof(*arr), (s2 + 1));
+	if (!arr)
 		return (NULL);
-	i = 0;
-	while (len-- && *(s + start))
-		str[i++] = *(s++ + start);
-	str[i] = '\0';
-	return (str);
+	i = start;
+	while (i - start < s2 && s[i])
+	{
+		arr[i - start] = s[i];
+		i++;
+	}
+	return (arr);
 }

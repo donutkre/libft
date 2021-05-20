@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_wbyte(long n)
+int	ft_wbyte(long n)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ int		ft_wbyte(long n)
 	return (i);
 }
 
-int		unicode_topindex(int size, long n)
+int	unicode_topindex(int size, long n)
 {
 	if (size == 1)
 		return (n);
@@ -58,7 +58,8 @@ char	*ft_chrdup(long n)
 	int		i;
 
 	size = ft_wbyte(n);
-	if (!(chr = malloc(sizeof(char) * (size + 1))))
+	chr = (char *)malloc(sizeof(char) * size + 1);
+	if (!chr)
 		return (NULL);
 	i = size;
 	chr[i] = '\0';

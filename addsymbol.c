@@ -14,8 +14,8 @@
 
 char	*ft_sharp(char *save, t_print *p)
 {
-	char *pre;
-	char *tmp;
+	char	*pre;
+	char	*tmp;
 
 	if ((p->spec == 'x' || p->spec == 'X') && *save && *save != '0')
 		p->sharp_x = 1;
@@ -36,9 +36,9 @@ char	*ft_sharp(char *save, t_print *p)
 
 char	*ft_addplus(char *save, t_print p)
 {
-	char *join;
-	char *pre;
-	long c;
+	char	*join;
+	char	*pre;
+	long	c;
 
 	c = (long)p.plus;
 	pre = ft_chrdup(c);

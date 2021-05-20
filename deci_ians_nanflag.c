@@ -21,7 +21,7 @@ void	ians_fix(t_print *p, int j)
 void	make_ians2(int ibox[801], int ibit[2101], t_print *p)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = -1;
 	while (++i <= 2100)
@@ -89,7 +89,7 @@ void	ft_nanflag(unsigned long long manti, t_print *p)
 
 char	*ft_isnan(char c)
 {
-	char *save;
+	char	*save;
 
 	save = NULL;
 	if (c == 'I')

@@ -3,49 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.tokyo>       +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:23:06 by syamashi          #+#    #+#             */
-/*   Updated: 2020/07/20 19:09:19 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/29 12:01:58 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/05 22:33:59 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(long long n)
+static char	*ft_putnbr(long int n, char *s, int size)
 {
-	int len;
+	int	i;
 
-	len = 1;
+	i = 0;
 	if (n < 0)
-		len++;
-	while (n /= 10)
-		len++;
-	return (len);
+	{
+		i++;
+		n = -n;
+	}
+	s[size - 1] = '\0';
+	while (--size > 0)
+	{
+		s[size - 1] = '0' + n % 10;
+		n = n / 10;
+	}
+	if (i == 1)
+		s[0] = '-';
+	return (s);
 }
 
-char		*ft_itoa(long long n)
+char	*ft_itoa(int n)
 {
-	char		*str;
-	int			len;
-	long long	m;
-	int			num;
+	int			i;
+	long int	nbr;
+	char		*s;
 
-	len = ft_intlen(n);
-	if (!(str = (char*)malloc(len + 1)))
-		return (NULL);
-	m = n;
+	nbr = (long int)n;
+	i = 2;
 	if (n < 0)
-		str[0] = '-';
-	str[len] = '\0';
-	num = m % 10;
-	num = ABS(num);
-	str[--len] = num + '0';
-	while (m /= 10)
+		i++;
+	while ((n / 10) != 0)
 	{
-		num = m % 10;
-		num = ABS(num);
-		str[--len] = num + '0';
+		i++;
+		n = n / 10;
 	}
-	return (str);
+	s = (char *)ft_calloc(sizeof(char), i);
+	if (!(s))
+		return (NULL);
+	return (ft_putnbr(nbr, s, i));
 }

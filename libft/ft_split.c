@@ -3,92 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 21:18:30 by syamashi          #+#    #+#             */
-/*   Updated: 2020/07/01 21:52:49 by syamashi         ###   ########.fr       */
+/*   Created: 2021/04/29 13:40:38 by ktiong            #+#    #+#             */
+/*   Updated: 2021/04/29 13:40:38 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	find_s(const char *str, char c, int goal)
+static int	ft_wordlen(char *s, char c)
 {
-	int i;
+	int		i;
 
-	i = -1;
-	while (str[goal + ++i] != '\0')
+	i = 0;
+	while (*s)
 	{
-		if (str[goal + i] == c)
-			continue ;
-		return (goal + i);
+		while (*s && *s == c)
+			s++;
+		i++;
+		if (*s == '\0')
+			i--;
+		while (*s && *s != c)
+			s++;
 	}
-	return (-1);
+	return (i);
 }
 
-static int	find_g(const char *str, char c, int start)
+static char	*ft_next(const char *s, char c)
 {
-	int i;
-
-	if (start < 0)
-		return (0);
-	i = -1;
-	while (str[start + ++i] != '\0')
-	{
-		if (str[start + i] == c)
-			return (start + i);
-	}
-	return (start + i);
-}
-
-static int	wd_size(const char *str, char c)
-{
-	int count;
-
-	count = 0;
-	while (*str)
-	{
-		while (*str && *str == c)
-			str++;
-		if (*str)
-			count++;
-		while (*str && *str != c)
-			str++;
-	}
-	return (count);
-}
-
-static void	*memleak(char **ans, int j)
-{
-	while (j--)
-		free(ans[j]);
-	free(ans);
-	return (NULL);
-}
-
-char		**ft_split(char const *str, char c)
-{
-	char	**ans;
+	char	*str;
+	int		len;
+	int		i;
 	int		j;
-	int		start;
-	int		goal;
 
+	i = 0;
+	len = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i + len] && s[i + len] != c)
+		len++;
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
-	j = -1;
-	start = find_s(str, c, 0);
-	goal = find_g(str, c, start);
-	if (!(ans = (char **)malloc(sizeof(char *) * (wd_size(str, c) + 1))))
-		return (NULL);
-	while (start > -1)
+		return (0);
+	j = 0;
+	while (j < len)
 	{
-		if (!(ans[++j] = ft_substr(str, start, goal - start)))
-			return (memleak(ans, j));
-		start = find_s(str, c, goal);
-		if (start == -1)
-			break ;
-		goal = find_g(str, c, start);
+		str[j] = s[i + j];
+		j++;
 	}
-	ans[++j] = NULL;
-	return (ans);
+	str[len] = '\0';
+	return (str);
+}
+
+static int	strlen_init(const char *s, char c)
+{
+	int		i;
+
+	i = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	return (i);
+}
+
+static void	ft_freee(char **a, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+		if (a + i && a[i])
+			free(a[i]);
+	free(a);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**arr;
+	char	*str;
+	int		len;
+	int		i;
+
+	if (!s)
+		return (0);
+	len = ft_wordlen((char *)s, c);
+	arr = malloc(sizeof(char *) * (len + 1));
+	if (!arr)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		str = ft_next(s, c);
+		if (!str)
+		{
+			ft_freee(arr, i);
+			return (0);
+		}
+		arr[i++] = str;
+		s += strlen_init(s, c) + ft_strlen(str);
+	}
+	arr[len] = 0;
+	return (arr);
 }

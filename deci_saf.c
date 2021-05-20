@@ -18,7 +18,7 @@ char	*make_esaf2(t_print *p)
 	int		i;
 
 	exnum = malloc(sizeof(char) * 4);
-	exnum[0] = (p->exp < 0) ? '-' : '+';
+	exnum[0] = ft_tern((p->exp < 0), '-', '+');
 	exnum[1] = '0';
 	i = ABS(p->exp);
 	exnum[2] = i + '0';
