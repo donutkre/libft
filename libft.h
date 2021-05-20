@@ -87,7 +87,6 @@ int					ft_ispunc(int c);
 int					ft_isxdigit(int c);
 int					ft_isspace(int c);
 void				ft_memdel(void **ap);
-char				*ft_isnan(char c);
 int					ft_abs(int nbr);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);

@@ -23,7 +23,7 @@ SRCS					= ft_atoi.c \
 					  ft_itoa.c \
 					  ft_memccpy.c \
 					  ft_memchr.c \
-					  ft_free \
+					  ft_free.c \
 					  ft_memcmp.c \
 					  ft_memcpy.c \
 					  ft_memmove.c \
@@ -54,17 +54,13 @@ SRCS					= ft_atoi.c \
 					  ft_strcpy.c \
 					  ft_putstr.c \
 					  ft_strncpy.c \
-					  ft_htoi.c \
 					  ft_ishex.c \
 	   				  ft_ispunc.c \
 					  ft_isspace.c \
 					  ft_isxdigit.c \
 					  ft_memdel.c \
-					  ft_isnan.c \
 					  util.c \
-					  ft_zerolen.c \
-					  ft_putnstr_fd.c \
-					  ft_ternint
+					  ft_putnstr_fd.c 
 
 BNS_SRCS				= ft_lstsize.c \
 					  ft_lstadd_back.c \

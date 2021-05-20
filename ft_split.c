@@ -66,7 +66,7 @@ static int	strlen_init(const char *s, char c)
 	return (i);
 }
 
-static void	ft_free(char **a, int len)
+static void	ft_freee(char **a, int len)
 {
 	int		i;
 
@@ -96,7 +96,7 @@ char	**ft_split(const char *s, char c)
 		str = ft_next(s, c);
 		if (!str)
 		{
-			ft_free(arr, i);
+			ft_freee(arr, i);
 			return (0);
 		}
 		arr[i++] = str;
