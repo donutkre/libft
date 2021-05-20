@@ -15,7 +15,7 @@
 char	*ft_convert_c(va_list *list, t_print p)
 {
 	char	*save;
-	long	j;
+	// long	j;
 
 	if (p.hhll == 'l')
 		save = ft_chrdup(va_arg(*list, long));

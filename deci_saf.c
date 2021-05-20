@@ -110,10 +110,10 @@ char	*make_gsaf(t_print *p)
 char	*make_fsaf(t_print *p)
 {
 	char	*saf;
-	char	*etext;
+	// char	*etext;
 	int		i;
 	int		j;
-	int		upnum;
+	// int		upnum;
 
 	i = p->pcs;
 	if (i == 0 && !p->sharp)

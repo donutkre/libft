@@ -17,7 +17,7 @@ char	*ft_itoa_st(size_t n)
 	char		*str;
 	int			len;
 	size_t		m;
-	int			num;
+	// int			num;
 
 	len = 1;
 	m = n;

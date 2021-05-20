@@ -84,8 +84,8 @@ char	*ft_deci_save(t_print *p)
 char	*ft_deci(va_list *list, t_print *p)
 {
 	double	d;
-	int		exp;
-	char	*save;
+	// int		exp;
+	// char	*save;
 
 	d = va_arg(*list, double);
 	p->pcs = MIN(2100, p->pcs);
