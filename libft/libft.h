@@ -97,5 +97,9 @@ int					ft_max(int a, int b);
 int					ft_zerolen(char *str);
 void				ft_putnstr_fd(char *s, size_t max_len, int fd);
 long				ft_tern(int c, long c1, long c2);
+char	ft_ternc(int c, char c1, char c2);
+long long	ft_ternl(int c, long long c1, long long c2);
+long double	ft_ternf(int c, long double c1, long double c2);
+void	*ft_ternp(int c, void *c1, void *c2, short tofree);
 
 #endif
