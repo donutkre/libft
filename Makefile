@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/01 11:45:45 by ktiong            #+#    #+#              #
-#    Updated: 2021/05/01 11:45:45 by ktiong           ###   ########.fr        #
+#    Created: 2021/05/20 21:37:04 by ktiong            #+#    #+#              #
+#    Updated: 2021/05/20 21:37:04 by ktiong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS					= ft_atoi.c \
 					  ft_strnstr.c \
 					  ft_strrchr.c \
 					  ft_strtrim.c \
+					  ft_tern.c \
 					  ft_substr.c \
 					  ft_tolower.c \
 					  ft_toupper.c \
@@ -62,7 +63,7 @@ SRCS					= ft_atoi.c \
 					  util.c \
 					  ft_putnstr_fd.c 
 
-BNS_SRCS				= ft_lstsize.c \
+BONUSES				= ft_lstsize.c \
 					  ft_lstadd_back.c \
 					  ft_lstadd_front.c \
 					  ft_lstclear.c \
@@ -72,28 +73,26 @@ BNS_SRCS				= ft_lstsize.c \
 					  ft_lstmap.c \
 					  ft_lstnew.c 
 
-OBJS					= $(SRCS:%.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
+BOBJS = $(BONUSES:%.c=%.o)
+HEADER = libft.h
+CFLAGS = -Wall -Wextra -Werror
+CC = gcc
 
-BNS_OBJS				= $(BNS_SRCS:%.c=%.o)
+all : $(NAME)
 
-FLAGS					= -Wall -Wextra -Werror
+$(NAME) : $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
-$(NAME)		:	$(OBJS)
-			gcc $(FLAGS) -c $(SRCS) -I./
-			ar rc $(NAME) $(OBJS)
+clean :
+	rm -f $(OBJS) $(BOBJS)
 
-all	:	$(NAME)
+fclean : clean
+	rm -f $(NAME)
 
-bonus	:	$(NAME)
-		gcc $(FLAGS) -c $(BNS_SRCS) -I./
-		ar rc $(NAME) $(BNS_OBJS)
+re : fclean all
 
-clean	:
-		rm -f $(OBJS) $(BNS_OBJS)
+bonus : $(BOBJS)
+	ar -rc $(NAME) $(BOBJS)
 
-fclean	:	clean
-		rm -f $(NAME)
-
-re	:	fclean all
-
-.PHONY	:	all clean fclean re
+.PHONY: all clean fclean re bonus

@@ -12,9 +12,13 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
+# define ABS(a) (a < 0) ? -a : a
 # include <stdlib.h>
+# include <string.h>
+# include <strings.h>
+# include <stddef.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
@@ -92,5 +96,10 @@ int					ft_min(int a, int b);
 int					ft_max(int a, int b);
 int					ft_zerolen(char *str);
 void				ft_putnstr_fd(char *s, size_t max_len, int fd);
-long				ft_ternint(int condition, long val1, long val2);
+long				ft_tern(int c, long c1, long c2);
+char	ft_ternc(int c, char c1, char c2);
+long long	ft_ternl(int c, long long c1, long long c2);
+long double	ft_ternf(int c, long double c1, long double c2);
+void	*ft_ternp(int c, void *c1, void *c2, short tofree);
+
 #endif
