@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_htoi.c                                          :+:      :+:    :+:   */
+/*   ft_otoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiong <ktiong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/01 00:17:44 by ktiong            #+#    #+#             */
-/*   Updated: 2021/05/01 00:17:44 by ktiong           ###   ########.fr       */
+/*   Created: 2021/05/21 13:05:25 by ktiong            #+#    #+#             */
+/*   Updated: 2021/05/21 13:05:25 by ktiong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static	size_t	cal(unsigned long long n)
 {
@@ -21,16 +19,16 @@ static	size_t	cal(unsigned long long n)
 	w = (n == 0);
 	while (n)
 	{
-		n /= 16;
+		n /= 8;
 		w++;
 	}
 	return (w);
 }
 
-char	*ft_htoi(unsigned long long n, char s)
+char	*ft_otoi(unsigned long long n)
 {
 	char			*num;
-	int				r;
+	int				rem;
 	size_t			i;
 	const size_t	w = cal(n);
 
@@ -40,12 +38,9 @@ char	*ft_htoi(unsigned long long n, char s)
 	i = 0;
 	while (i < w)
 	{
-		r = n % 16;
-		n = n / 16;
-		if (s == 'x')
-			num[i] = "0123456789abcdef"[r];
-		else
-			num[i] = "0123456789ABCDEF"[r];
+		rem = n % 8;
+		n = n / 8;
+		num[i] = "01234567"[rem];
 		i++;
 	}
 	return (ft_strrev(num));

@@ -20,6 +20,12 @@
 # include <unistd.h>
 # include <stdio.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
+
+# define BIAS 0x3FF
+
 typedef struct s_list
 {
 	void			*content;
@@ -62,13 +68,13 @@ char				*ft_strnew(size_t size);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
-
+char				*ft_strrev(char *str);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				**ft_split(char const *s, char c);
-
+char				*ft_strndup(const char *s1, size_t n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
@@ -85,21 +91,20 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
-int					ft_htoi(char *s);
+char				*ft_htoi(unsigned long long n, char s);
+char    			*ft_utoi(unsigned long long n);
+char				*ft_otoi(unsigned long long n);
 int					ft_ishex(int c);
 int					ft_ispunc(int c);
 int					ft_isxdigit(int c);
 int					ft_isspace(int c);
 void				ft_memdel(void **ap);
-int					ft_abs(int nbr);
-int					ft_min(int a, int b);
-int					ft_max(int a, int b);
 int					ft_zerolen(char *str);
 void				ft_putnstr_fd(char *s, size_t max_len, int fd);
 long				ft_tern(int c, long c1, long c2);
-char	ft_ternc(int c, char c1, char c2);
-long long	ft_ternl(int c, long long c1, long long c2);
-long double	ft_ternf(int c, long double c1, long double c2);
-void	*ft_ternp(int c, void *c1, void *c2, short tofree);
+char				ft_ternc(int c, char c1, char c2);
+long long			ft_ternl(int c, long long c1, long long c2);
+long double			ft_ternf(int c, long double c1, long double c2);
+void				*ft_ternp(int c, void *c1, void *c2, short tofree);
 
 #endif

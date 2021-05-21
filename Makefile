@@ -60,8 +60,12 @@ SRCS					= ft_atoi.c \
 					  ft_isspace.c \
 					  ft_isxdigit.c \
 					  ft_memdel.c \
-					  util.c \
-					  ft_putnstr_fd.c 
+					  ft_putnstr_fd.c \
+					  ft_strrev.c \
+					  ft_strndup.c \
+					  ft_htoi.c \
+					  ft_utoi.c \
+					  ft_otoi.c 
 
 BONUSES				= ft_lstsize.c \
 					  ft_lstadd_back.c \
