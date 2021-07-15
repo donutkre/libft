@@ -12,23 +12,24 @@
 
 #include "libft.h"
 
-char	*ft_putnbr(long int n, char *s, int size)
+void	ft_putnbr(int n)
 {
-	int	i;
+	ssize_t	r;
+	char	c;
 
-	i = 0;
-	if (n < 0)
+	if (n == -2147483648)
+		r = write(1, "-2147483648", 11);
+	else
 	{
-		i++;
-		n = -n;
+		if (n < 0)
+		{
+			n = -n;
+			r = write(1, "-", 1);
+		}
+		if (n > 9)
+			ft_putnbr(n / 10);
+		c = n % 10 + '0';
+		r = write(1, &c, 1);
 	}
-	s[size - 1] = '\0';
-	while (--size > 0)
-	{
-		s[size - 1] = '0' + n % 10;
-		n = n / 10;
-	}
-	if (i == 1)
-		s[0] = '-';
-	return (s);
+	(void)r;
 }

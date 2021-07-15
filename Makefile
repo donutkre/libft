@@ -32,6 +32,7 @@ SRCS					= ft_atoi.c \
 					  ft_putendl_fd.c \
 					  ft_putnbr_fd.c \
 					  ft_putstr_fd.c \
+					  ft_putnbr.c \
 					  ft_split.c \
 					  ft_strchr.c \
 					  ft_strdup.c \
@@ -39,13 +40,10 @@ SRCS					= ft_atoi.c \
 					  ft_strlcat.c \
 					  ft_strlcpy.c \
 					  ft_strlen.c \
-					  ft_strmapi.c \
 					  ft_strncmp.c \
 					  ft_strnstr.c \
-					  ft_strrchr.c \
-					  ft_strtrim.c \
-					  ft_tern.c \
 					  ft_substr.c \
+					  ft_tern.c \
 					  ft_tolower.c \
 					  ft_toupper.c \
 					  ft_itoa.c \
@@ -53,6 +51,7 @@ SRCS					= ft_atoi.c \
 					  ft_chrstr.c \
 					  ft_putchar.c \
 					  ft_strcpy.c \
+					  ft_open.c \
 					  ft_putstr.c \
 					  ft_strncpy.c \
 					  ft_ishex.c \
@@ -65,7 +64,10 @@ SRCS					= ft_atoi.c \
 					  ft_strndup.c \
 					  ft_htoi.c \
 					  ft_utoi.c \
-					  ft_otoi.c 
+					  ft_otoi.c \
+					  ft_strcmp.c \
+					  get_next_line.c \
+					  gnl_util.c
 
 BONUSES				= ft_lstsize.c \
 					  ft_lstadd_back.c \

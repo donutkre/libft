@@ -12,44 +12,59 @@
 
 #include "libft.h"
 
-static char	*ft_putnbr(long int n, char *s, int size)
+static int	all_num(unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	if (n < 0)
+	while (n >= 10)
 	{
+		n /= 10;
 		i++;
-		n = -n;
 	}
-	s[size - 1] = '\0';
-	while (--size > 0)
+	return (i + 1);
+}
+
+static int	nbr_g(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
+
+char	*make_str(int len, int nb, int n)
+{
+	char	*dest;
+	int		i;
+
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * len + 1 + (nb < 0));
+	if (dest)
 	{
-		s[size - 1] = '0' + n % 10;
-		n = n / 10;
+		if (n < 0)
+		{
+			dest[i] = '-';
+			len++;
+		}
+		i = len - 1;
+		while (nb >= 10)
+		{
+			dest[i] = nb % 10 + 48;
+			nb /= 10;
+			i--;
+		}
+		dest[i] = nb % 10 + 48;
+		dest[len] = '\0';
 	}
-	if (i == 1)
-		s[0] = '-';
-	return (s);
+	return (dest);
 }
 
 char	*ft_itoa(int n)
 {
-	int			i;
-	long int	nbr;
-	char		*s;
+	unsigned int	len;
+	unsigned int	nb;
 
-	nbr = (long int)n;
-	i = 2;
-	if (n < 0)
-		i++;
-	while ((n / 10) != 0)
-	{
-		i++;
-		n = n / 10;
-	}
-	s = (char *)ft_calloc(sizeof(char), i);
-	if (!(s))
-		return (NULL);
-	return (ft_putnbr(nbr, s, i));
+	nb = nbr_g(n);
+	len = all_num(nb);
+	return (make_str(len, nb, n));
 }
