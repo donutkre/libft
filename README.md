@@ -2,7 +2,6 @@
 An implementation of some of the standard functions in C.
 
 # Using this Library
-</br>
 
 ```
 https://github.com/donutkre/libft.git
@@ -10,7 +9,6 @@ cd libft
 make
 ```
 
-</br>
 This library contains a makefile, with the following options:
 
 | Command | Usage |
